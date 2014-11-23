@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LKMainWindow" customModule="FreeSpace" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A1e-t6-eIK">
+                        <rect key="frame" x="18" y="319" width="89" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="beV-EB-mEi"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="FreeSpace" id="8Sk-j9-hjq">
+                            <font key="font" metaFont="system" size="17"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="pir-qF-uur">
+                        <rect key="frame" x="12" y="308" width="456" height="5"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5hy-od-KJ8">
+                        <rect key="frame" x="18" y="273" width="85" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="File Size Unit" id="kjE-Zb-mQw">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autorecalculatesCellSize="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIX-k6-dSh">
+                        <rect key="frame" x="32" y="227" width="109" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="109" id="WR4-nD-XnS"/>
+                        </constraints>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <size key="cellSize" width="109" height="18"/>
+                        <size key="intercellSpacing" width="4" height="2"/>
+                        <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="VNG-ee-kOq">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <cells>
+                            <column>
+                                <buttonCell type="radio" title="Automatic" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="6We-Vf-dzh">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <buttonCell type="radio" title="Always in GB" imagePosition="left" alignment="left" inset="2" id="9LW-Nf-1Zk">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </column>
+                        </cells>
+                    </matrix>
+                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WQ3-ly-rho">
+                        <rect key="frame" x="12" y="208" width="456" height="5"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tfX-9g-aKN">
+                        <rect key="frame" x="20" y="173" width="82" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notifications" id="SWP-oW-vWd">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="fbL-V1-3sd">
+                        <rect key="frame" x="28" y="149" width="337" height="18"/>
+                        <buttonCell key="cell" type="check" title="Show notifications for low remaining storage space" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vkm-de-3aq">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="eue-7J-Gnw">
+                        <rect key="frame" x="45" y="127" width="110" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 2 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wd7-v7-qLP">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="V8y-nb-shI">
+                        <rect key="frame" x="45" y="105" width="110" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 5 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="lMx-Wj-1JG">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="oPe-6Y-34e">
+                        <rect key="frame" x="45" y="61" width="117" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 15 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="FTw-oj-JZP">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="sG5-bV-aYf">
+                        <rect key="frame" x="45" y="39" width="117" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 25 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Vvp-Sb-hRq">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="TV0-85-xqx">
+                        <rect key="frame" x="45" y="17" width="117" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 50 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="207-eY-YDE">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ufu-iE-jIM">
+                        <rect key="frame" x="45" y="83" width="117" height="18"/>
+                        <buttonCell key="cell" type="check" title="Notify at 10 GB" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="aWE-bt-nI8">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oPe-6Y-34e" firstAttribute="top" secondItem="ufu-iE-jIM" secondAttribute="bottom" constant="8" id="3z0-pD-JE9"/>
+                    <constraint firstItem="sG5-bV-aYf" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="5zi-2O-Qbi"/>
+                    <constraint firstItem="ufu-iE-jIM" firstAttribute="top" secondItem="V8y-nb-shI" secondAttribute="bottom" constant="8" id="8iw-Fa-5UT"/>
+                    <constraint firstItem="tfX-9g-aKN" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="22" id="9p5-xg-Hub"/>
+                    <constraint firstItem="TV0-85-xqx" firstAttribute="top" secondItem="sG5-bV-aYf" secondAttribute="bottom" constant="8" id="AGf-ww-4Pu"/>
+                    <constraint firstItem="oPe-6Y-34e" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="Act-3e-pcU"/>
+                    <constraint firstItem="GIX-k6-dSh" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="32" id="CSS-vn-YfB"/>
+                    <constraint firstItem="ufu-iE-jIM" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="D7v-lW-i4C"/>
+                    <constraint firstItem="WQ3-ly-rho" firstAttribute="top" secondItem="GIX-k6-dSh" secondAttribute="bottom" constant="16" id="I1z-nc-cSA"/>
+                    <constraint firstItem="V8y-nb-shI" firstAttribute="top" secondItem="eue-7J-Gnw" secondAttribute="bottom" constant="8" id="KSx-Ed-V6U"/>
+                    <constraint firstItem="pir-qF-uur" firstAttribute="top" secondItem="A1e-t6-eIK" secondAttribute="bottom" constant="8" id="Nfd-kC-6Jv"/>
+                    <constraint firstItem="V8y-nb-shI" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="OcK-dn-YC8"/>
+                    <constraint firstItem="tfX-9g-aKN" firstAttribute="top" secondItem="WQ3-ly-rho" secondAttribute="bottom" constant="20" id="OoO-Iw-f8y"/>
+                    <constraint firstItem="5hy-od-KJ8" firstAttribute="top" secondItem="pir-qF-uur" secondAttribute="bottom" constant="20" id="QFQ-cy-Qai"/>
+                    <constraint firstItem="A1e-t6-eIK" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="YpS-id-IFp"/>
+                    <constraint firstItem="TV0-85-xqx" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="ZWb-QN-8HY"/>
+                    <constraint firstItem="fbL-V1-3sd" firstAttribute="top" secondItem="tfX-9g-aKN" secondAttribute="bottom" constant="8" id="bLR-7r-phB"/>
+                    <constraint firstItem="WQ3-ly-rho" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="12" id="cVI-DC-21d"/>
+                    <constraint firstItem="5hy-od-KJ8" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="dMC-GY-jk9"/>
+                    <constraint firstItem="A1e-t6-eIK" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="f5d-Ya-o83"/>
+                    <constraint firstItem="pir-qF-uur" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="12" id="gte-7r-1nl"/>
+                    <constraint firstItem="fbL-V1-3sd" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="30" id="joL-C7-9Cj"/>
+                    <constraint firstAttribute="trailing" secondItem="pir-qF-uur" secondAttribute="trailing" constant="12" id="neb-Bs-iuK"/>
+                    <constraint firstItem="eue-7J-Gnw" firstAttribute="top" secondItem="fbL-V1-3sd" secondAttribute="bottom" constant="8" id="rZn-PZ-8K6"/>
+                    <constraint firstAttribute="trailing" secondItem="WQ3-ly-rho" secondAttribute="trailing" constant="12" id="tRP-My-eNt"/>
+                    <constraint firstItem="eue-7J-Gnw" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="47" id="uzw-pJ-FzY"/>
+                    <constraint firstItem="GIX-k6-dSh" firstAttribute="top" secondItem="5hy-od-KJ8" secondAttribute="bottom" constant="8" id="xDM-zl-luQ"/>
+                    <constraint firstItem="sG5-bV-aYf" firstAttribute="top" secondItem="oPe-6Y-34e" secondAttribute="bottom" constant="8" id="xF6-AS-xxn"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="-6" y="700"/>
+        </window>
+    </objects>
+</document>

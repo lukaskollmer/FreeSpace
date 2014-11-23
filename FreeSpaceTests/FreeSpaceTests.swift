@@ -33,4 +33,30 @@ class FreeSpaceTests: XCTestCase {
         }
     }
     
+    func testLoadingWindow1() {
+        self.measureBlock() {
+            
+            let window = NSWindowController(windowNibName: "LKMainWindow")
+            
+            window.window?.makeMainWindow()
+            window.window?.makeKeyWindow()
+            window.window?.becomeKeyWindow()
+            window.window?.becomeMainWindow()
+            
+            window.showWindow(self)
+            NSApp.activateIgnoringOtherApps(true)
+        }
+    }
+    
+    func testLoadingWindow2() {
+        self.measureBlock() {
+            
+            let window = NSWindowController(windowNibName: "LKMainWindow")
+
+            window.showWindow(self)
+            window.window?.makeKeyAndOrderFront(nil)
+            NSApp.activateIgnoringOtherApps(true)
+        }
+    }
+    
 }

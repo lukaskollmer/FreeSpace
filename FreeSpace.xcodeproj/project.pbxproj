@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		5D8BD1E31A21C6C8002892B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E21A21C6C8002892B2 /* AppDelegate.swift */; };
 		5D8BD1E51A21C6C8002892B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E41A21C6C8002892B2 /* Images.xcassets */; };
-		5D8BD1E81A21C6C8002892B2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E61A21C6C8002892B2 /* MainMenu.xib */; };
 		5D8BD1F41A21C6C8002892B2 /* FreeSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD1F31A21C6C8002892B2 /* FreeSpaceTests.swift */; };
+		5D8BD1FE1A21C6E6002892B2 /* LKFreeSpaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD1FD1A21C6E6002892B2 /* LKFreeSpaceManager.swift */; };
+		5D8BD2031A21D40B002892B2 /* LKFreeSpaceStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD2021A21D40B002892B2 /* LKFreeSpaceStatusItem.swift */; };
+		5DE6917C1A220E8900E29D66 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E61A21C6C8002892B2 /* MainMenu.xib */; };
+		5DE6917F1A22136300E29D66 /* LKMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6917D1A22136300E29D66 /* LKMainWindow.swift */; };
+		5DE691801A22136300E29D66 /* LKMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6917E1A22136300E29D66 /* LKMainWindow.xib */; };
+		5DE691811A221B5D00E29D66 /* LKMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6917E1A22136300E29D66 /* LKMainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,11 @@
 		5D8BD1ED1A21C6C8002892B2 /* FreeSpaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeSpaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D8BD1F21A21C6C8002892B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D8BD1F31A21C6C8002892B2 /* FreeSpaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeSpaceTests.swift; sourceTree = "<group>"; };
+		5D8BD1FD1A21C6E6002892B2 /* LKFreeSpaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKFreeSpaceManager.swift; sourceTree = "<group>"; };
+		5D8BD2021A21D40B002892B2 /* LKFreeSpaceStatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKFreeSpaceStatusItem.swift; sourceTree = "<group>"; };
+		5DA304901A21F8BB0053F405 /* FreeSpacePlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FreeSpacePlayground.playground; sourceTree = "<group>"; };
+		5DE6917D1A22136300E29D66 /* LKMainWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMainWindow.swift; sourceTree = "<group>"; };
+		5DE6917E1A22136300E29D66 /* LKMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKMainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +83,14 @@
 		5D8BD1DF1A21C6C8002892B2 /* FreeSpace */ = {
 			isa = PBXGroup;
 			children = (
+				5D8BD1FD1A21C6E6002892B2 /* LKFreeSpaceManager.swift */,
 				5D8BD1E21A21C6C8002892B2 /* AppDelegate.swift */,
+				5DA304901A21F8BB0053F405 /* FreeSpacePlayground.playground */,
+				5D8BD2021A21D40B002892B2 /* LKFreeSpaceStatusItem.swift */,
 				5D8BD1E41A21C6C8002892B2 /* Images.xcassets */,
 				5D8BD1E61A21C6C8002892B2 /* MainMenu.xib */,
+				5DE6917D1A22136300E29D66 /* LKMainWindow.swift */,
+				5DE6917E1A22136300E29D66 /* LKMainWindow.xib */,
 				5D8BD1E01A21C6C8002892B2 /* Supporting Files */,
 			);
 			path = FreeSpace;
@@ -186,8 +201,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE6917C1A220E8900E29D66 /* MainMenu.xib in Resources */,
+				5DE691801A22136300E29D66 /* LKMainWindow.xib in Resources */,
 				5D8BD1E51A21C6C8002892B2 /* Images.xcassets in Resources */,
-				5D8BD1E81A21C6C8002892B2 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE691811A221B5D00E29D66 /* LKMainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D8BD1E31A21C6C8002892B2 /* AppDelegate.swift in Sources */,
+				5D8BD2031A21D40B002892B2 /* LKFreeSpaceStatusItem.swift in Sources */,
+				5D8BD1FE1A21C6E6002892B2 /* LKFreeSpaceManager.swift in Sources */,
+				5DE6917F1A22136300E29D66 /* LKMainWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +413,7 @@
 				5D8BD1F91A21C6C8002892B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D8BD1FA1A21C6C8002892B2 /* Build configuration list for PBXNativeTarget "FreeSpaceTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +422,7 @@
 				5D8BD1FC1A21C6C8002892B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
