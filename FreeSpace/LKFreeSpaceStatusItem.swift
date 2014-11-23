@@ -28,6 +28,7 @@ class LKFreeSpaceStatusItem: NSObject {
     private var quitItem: NSMenuItem!
     
     private var timer: NSTimer?
+    private let metadataQuery = NSMetadataQuery()
     
     private let freeSpaceManager = LKFreeSpaceManager()
     
@@ -45,7 +46,7 @@ class LKFreeSpaceStatusItem: NSObject {
         self.statusItem.toolTip = "FreeSpace"
         self.statusItem.target = self
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerhh"), userInfo: nil, repeats: true)
+        //self.timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerhh"), userInfo: nil, repeats: true)
     
         
         
@@ -60,14 +61,28 @@ class LKFreeSpaceStatusItem: NSObject {
         
         self.statusItem.menu = self.statusItemMenu
         
+        self.startWatching()
+        
         
         
     
     }
     
+    func startWatching() {
+        self.metadataQuery.searchScopes = ["/"]
+        self.metadataQuery.predicate = NSPredicate(format: "%K like '*.*'", NSMetadataItemFSNameKey)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidFinishGatheringNotification, object: self.metadataQuery)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidUpdateNotification, object: self.metadataQuery)
+        self.metadataQuery.startQuery()
+    }
     
-    func timerhh() {
-        println("timer")
+    func queryFoundStuff(sender: AnyObject) {
+        println("queryFoundStuff:")
+        self.updateStatusItemTitle()
+    }
+
+    
+    func updateStatusItemTitle() {
         self.statusItem.title = self.freeSpaceManager.freeSpaceAsString()
     }
     
