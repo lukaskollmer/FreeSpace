@@ -72,7 +72,7 @@ class LKFreeSpaceStatusItem: NSObject {
     }
     
     func startWatching() {
-        self.metadataQuery.searchScopes = ["/Volumes/NO NAME"]
+        self.metadataQuery.searchScopes = ["/"]
         self.metadataQuery.predicate = NSPredicate(format: "%K like '*.*'", NSMetadataItemFSNameKey)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidFinishGatheringNotification, object: self.metadataQuery)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidUpdateNotification, object: self.metadataQuery)

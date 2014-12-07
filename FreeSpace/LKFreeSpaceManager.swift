@@ -38,7 +38,7 @@ class LKFreeSpaceManager {
     func freeSpaceAsString() -> String {
         
         let error = NSErrorPointer()
-        let dictFree: NSDictionary = self.fileManager.attributesOfFileSystemForPath("/Volumes/NO NAME", error: error)!
+        let dictFree: NSDictionary = self.fileManager.attributesOfFileSystemForPath("/", error: error)!
         
         let freeSpace: NSNumber = dictFree[NSFileSystemFreeSize] as NSNumber
         
