@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //@IBOutlet weak var menu: NSMenu!
     
     var freeSpaceStatusItem: LKFreeSpaceStatusItem!
-    var window: NSWindowController?
+    var settingsWindow: LKMainWindow?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -30,11 +30,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.freeSpaceStatusItem.settingsButtonClicked = {(settingsButton: NSMenuItem?) in
             println("settings buttonclicked in closure. settingsButton: \(settingsButton)")
+            
+            /*
             self.window = NSWindowController(windowNibName: "LKMainWindow")
             
             self.window?.showWindow(self)
             self.window?.window?.makeKeyAndOrderFront(nil)
             println(self.window?.window)
+*/
+            self.settingsWindow = LKMainWindow()
             NSApp.activateIgnoringOtherApps(true)
         }
         
