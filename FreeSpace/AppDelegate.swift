@@ -11,7 +11,7 @@ import Cocoa
 //import CoreData
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, LKFreeSpaceStatusItemDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
 
     //@IBOutlet weak var window: NSWindow!
     //@IBOutlet weak var menu: NSMenu!
@@ -23,6 +23,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, LKFreeSpaceStatusItemDelegat
         // Insert code here to initialize your application
         
         self.freeSpaceStatusItem = LKFreeSpaceStatusItem()
+        self.freeSpaceStatusItem.infoButtonClicked = {(infoButton: NSMenuItem?) in
+            println("info buttonclicked in closure. InfoButton: \(infoButton)")
+            
+        }
+        
+        self.freeSpaceStatusItem.settingsButtonClicked = {(settingsButton: NSMenuItem?) in
+            println("settings buttonclicked in closure. settingsButton: \(settingsButton)")
+            self.window = NSWindowController(windowNibName: "LKMainWindow")
+            
+            self.window?.showWindow(self)
+            self.window?.window?.makeKeyAndOrderFront(nil)
+            println(self.window?.window)
+            NSApp.activateIgnoringOtherApps(true)
+        }
+        
+        self.freeSpaceStatusItem.quitButtonClicked = {(quitButton: NSMenuItem?) in
+            println("quit buttonclicked in closure. quitButton: \(quitButton)")
+            NSApplication.sharedApplication().terminate(self)
+        }
         
         
     }
@@ -31,36 +50,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, LKFreeSpaceStatusItemDelegat
         // Insert code here to tear down your application
     }
 
-    
-    func didClickInfoButton() {
-        println("didClickInfoButton")
-    }
-    
-    func didClickSettingsButton() {
-        println("didClickSettingsButton")
-        self.window = NSWindowController(windowNibName: "LKMainWindow")
-        /*
-        self.window?.window?.makeMainWindow()
-        self.window?.window?.makeKeyWindow()
-        self.window?.window?.becomeKeyWindow()
-        self.window?.window?.becomeMainWindow()
-*/
-        self.window?.showWindow(self)
-        self.window?.window?.makeKeyAndOrderFront(nil)
-        println(self.window?.window)
-        NSApp.activateIgnoringOtherApps(true)
-        
-    }
-    
-    func didClickQuitButton() {
-        println("didClickQuitButton")
-        self.window = NSWindowController(windowNibName: "LKMainWindow")
-        
-        self.window?.showWindow(self)
-        self.window?.window?.makeKeyAndOrderFront(nil)
-        NSApp.activateIgnoringOtherApps(true)
-
-    }
 
 
 }

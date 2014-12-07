@@ -9,12 +9,6 @@
 import Foundation
 import Cocoa
 
-protocol LKFreeSpaceStatusItemDelegate {
-    func didClickInfoButton()
-    func didClickSettingsButton()
-    func didClickQuitButton()
-}
-
 
 class LKFreeSpaceStatusItem: NSObject {
     
@@ -32,7 +26,9 @@ class LKFreeSpaceStatusItem: NSObject {
     
     private let freeSpaceManager = LKFreeSpaceManager()
     
-    var delegate: LKFreeSpaceStatusItemDelegate?
+    var infoButtonClicked: ((infoButton: NSMenuItem?) -> Void)?
+    var settingsButtonClicked: ((settingsButton: NSMenuItem?) -> Void)?
+    var quitButtonClicked: ((quitButton: NSMenuItem?) -> Void)?
     
     
     override init() {
@@ -51,15 +47,20 @@ class LKFreeSpaceStatusItem: NSObject {
         
         
         self.infoItem = NSMenuItem(title: "Info", action: Selector("didClickInfoButton"), keyEquivalent: "")
+        self.infoItem.target = self
         self.statusItemMenu.insertItem(self.infoItem, atIndex: 0)
         
         self.settingsItem = NSMenuItem(title: "Settings", action: Selector("didClickSettingsButton"), keyEquivalent: "")
+        self.settingsItem.target = self
         self.statusItemMenu.insertItem(self.settingsItem, atIndex: 1)
         
         self.quitItem = NSMenuItem(title: "Quit", action: Selector("didClickQuitButton"), keyEquivalent: "")
+        self.quitItem.target = self
         self.statusItemMenu.insertItem(self.quitItem, atIndex: 2)
         
         self.statusItem.menu = self.statusItemMenu
+        
+        self.updateStatusItemTitle()
         
         self.startWatching()
         
@@ -73,6 +74,7 @@ class LKFreeSpaceStatusItem: NSObject {
         self.metadataQuery.predicate = NSPredicate(format: "%K like '*.*'", NSMetadataItemFSNameKey)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidFinishGatheringNotification, object: self.metadataQuery)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("queryFoundStuff:"), name: NSMetadataQueryDidUpdateNotification, object: self.metadataQuery)
+        
         self.metadataQuery.startQuery()
     }
     
@@ -80,11 +82,23 @@ class LKFreeSpaceStatusItem: NSObject {
         println("queryFoundStuff:")
         self.updateStatusItemTitle()
     }
-
     
     func updateStatusItemTitle() {
         self.statusItem.title = self.freeSpaceManager.freeSpaceAsString()
     }
     
+    func didClickInfoButton() {
+        self.infoButtonClicked?(infoButton: self.infoItem)
+    }
+    
+    func didClickSettingsButton() {
+        self.settingsButtonClicked?(settingsButton: self.settingsItem)
+        
+    }
+    
+    func didClickQuitButton() {
+        self.quitButtonClicked?(quitButton: self.quitItem)
+    }
+
     
 }

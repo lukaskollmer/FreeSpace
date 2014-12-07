@@ -51,7 +51,7 @@
                             <constraint firstAttribute="width" constant="109" id="WR4-nD-XnS"/>
                         </constraints>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        <size key="cellSize" width="109" height="18"/>
+                        <size key="cellSize" width="104" height="18"/>
                         <size key="intercellSpacing" width="4" height="2"/>
                         <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="VNG-ee-kOq">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
