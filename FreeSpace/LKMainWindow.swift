@@ -106,7 +106,15 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         case self.fileSizeUnitRadioButton as NSMatrix:
             self.updateFileSizeSettings()
             break
-        case self.showNotificationsButton as NSButton, self.notifyAt2GbButton as NSButton, self.notifyAt5GbButton as NSButton, self.notifyAt10GbButton as NSButton, self.notifyAt15GbButton as NSButton, self.notifyAt25GbButton as NSButton, self.notifyAt50GbButton as NSButton:
+        case self.showNotificationsButton as NSButton:
+            if self.showNotificationsButton.state == 0 {
+                self.setAllNotificationButtonsEnabledState(false)
+            }
+            if self.showNotificationsButton.state == 1 {
+                self.setAllNotificationButtonsEnabledState(true)
+            }
+            break
+        case self.notifyAt2GbButton as NSButton, self.notifyAt5GbButton as NSButton, self.notifyAt10GbButton as NSButton, self.notifyAt15GbButton as NSButton, self.notifyAt25GbButton as NSButton, self.notifyAt50GbButton as NSButton:
             break
         default:
             break
@@ -133,6 +141,14 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     }
     
     
+    func setAllNotificationButtonsEnabledState(state: Bool) {
+        println("setAllNotificationButtonsEnabledState: \(state)")
+        let notificationButtons: [NSButton] = [self.notifyAt2GbButton, self.notifyAt5GbButton, self.notifyAt10GbButton, self.notifyAt15GbButton, self.notifyAt25GbButton, self.notifyAt50GbButton]
+        
+        for button in notificationButtons {
+            button.enabled = state
+        }
+    }
     func updateNotificationSettings() {
         
     }
