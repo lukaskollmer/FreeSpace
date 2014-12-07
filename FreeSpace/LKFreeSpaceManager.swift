@@ -12,19 +12,55 @@ class LKFreeSpaceManager {
     
     let fileManager = NSFileManager.defaultManager()
     
+    let fileSizeFormatter = NSByteCountFormatter()
+    
+    
+    init() {
+        let fileUnit: FileUnit = FileUnit(int: NSUserDefaults.standardUserDefaults().integerForKey("fileUnit"))
+        
+        switch fileUnit {
+        case .Automatic:
+            self.fileSizeFormatter.allowedUnits = .UseAll
+            break
+        case .GB:
+            self.fileSizeFormatter.allowedUnits = .UseGB
+            break
+        default:
+            self.fileSizeFormatter.allowedUnits = .UseAll
+            break
+        }
+        
+        
+        self.fileSizeFormatter.countStyle = .File
+        self.fileSizeFormatter.includesUnit = true
+    }
+    
     func freeSpaceAsString() -> String {
         
         let error = NSErrorPointer()
-        let dictFree: NSDictionary = self.fileManager.attributesOfFileSystemForPath("/", error: error)!
+        let dictFree: NSDictionary = self.fileManager.attributesOfFileSystemForPath("/Volumes/NO NAME", error: error)!
         
         let freeSpace: NSNumber = dictFree[NSFileSystemFreeSize] as NSNumber
         
         let bytesAsInt: Int64 = freeSpace.longLongValue
         
-        let bytesAsString: String = NSByteCountFormatter.stringFromByteCount(bytesAsInt, countStyle: NSByteCountFormatterCountStyle.File)
+        let bytesAsString: String = self.fileSizeFormatter.stringFromByteCount(bytesAsInt)
 
         return bytesAsString
     }
     
 
+    func setUnit(unit: FileUnit, completionHandler: (() -> Void)) {
+        println("in freespace manager set unit func")
+        switch unit {
+        case .Automatic:
+            self.fileSizeFormatter.allowedUnits = .UseAll
+            break
+        case .GB:
+            self.fileSizeFormatter.allowedUnits = .UseGB
+            break
+        }
+        
+        completionHandler()
+    }
 }

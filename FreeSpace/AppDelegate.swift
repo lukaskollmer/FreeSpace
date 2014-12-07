@@ -39,6 +39,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             println(self.window?.window)
 */
             self.settingsWindow = LKMainWindow()
+            self.settingsWindow?.fileUnitChangeHandler = {(unit: FileUnit) in
+                println("in appdelegate filesize closure")
+                self.freeSpaceStatusItem.setFileSizeUnit(unit)
+            }
             NSApp.activateIgnoringOtherApps(true)
         }
         

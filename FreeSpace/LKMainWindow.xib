@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LKMainWindow" customModule="FreeSpace" customModuleProvider="target">
             <connections>
-                <outlet property="fileSiteUnitRadioButton" destination="GIX-k6-dSh" id="LYc-4d-myD"/>
+                <outlet property="fileSizeUnitRadioButton" destination="GIX-k6-dSh" id="LYc-4d-myD"/>
                 <outlet property="launchAtLoginButton" destination="J8G-8Z-h9D" id="TTz-js-3IV"/>
                 <outlet property="notifyAt10GbButton" destination="ufu-iE-jIM" id="dEK-gV-Rx9"/>
                 <outlet property="notifyAt15GbButton" destination="oPe-6Y-34e" id="mAo-St-68Z"/>

@@ -8,11 +8,30 @@
 
 import Cocoa
 
+public enum FileUnit: Int {
+    case Automatic = 0
+    case GB = 1
+    
+    init(int: Int) {
+        switch int {
+        case 0:
+            self = .Automatic
+            break
+        case 1:
+            self = .GB
+            break
+        default:
+            self = .Automatic
+            break
+        }
+    }
+}
+
 class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     @IBOutlet weak var launchAtLoginButton: NSButton!
     
-    @IBOutlet weak var fileSiteUnitRadioButton: NSMatrix!
+    @IBOutlet weak var fileSizeUnitRadioButton: NSMatrix!
     
     @IBOutlet weak var showNotificationsButton: NSButton!
     
@@ -31,7 +50,7 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     
     
-    
+    var fileUnitChangeHandler: ((unit: FileUnit) -> Void)?
     
     
     
@@ -60,6 +79,13 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         if !NSApplication.sharedApplication().isLaunchItem {
             self.launchAtLoginButton.state = 0
         }
+        
+        let fileUnit: FileUnit = FileUnit(int: NSUserDefaults.standardUserDefaults().integerForKey("fileUnit"))
+        
+        self.fileSizeUnitRadioButton.selectCellAtRow(fileUnit.rawValue, column: 0)
+        
+        
+        
     }
     
     override func windowDidLoad() {
@@ -77,7 +103,8 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         case self.launchAtLoginButton as NSButton:
             self.updateLaunchAtLoginSettings()
             break
-        case self.fileSiteUnitRadioButton as NSMatrix:
+        case self.fileSizeUnitRadioButton as NSMatrix:
+            self.updateFileSizeSettings()
             break
         case self.showNotificationsButton as NSButton, self.notifyAt2GbButton as NSButton, self.notifyAt5GbButton as NSButton, self.notifyAt10GbButton as NSButton, self.notifyAt15GbButton as NSButton, self.notifyAt25GbButton as NSButton, self.notifyAt50GbButton as NSButton:
             break
@@ -98,7 +125,11 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     
     func updateFileSizeSettings() {
+        let fileUnit = self.fileSizeUnitRadioButton.selectedFileUnit
         
+        NSUserDefaults.standardUserDefaults().setInteger(fileUnit.rawValue, forKey: "fileUnit")
+        
+        self.fileUnitChangeHandler?(unit: fileUnit)
     }
     
     
@@ -109,6 +140,19 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
 }
 
+extension NSMatrix {
+    
+    
+    var selectedFileUnit: FileUnit {
+        get {
+            if self.selectedRow == 0 {
+                return FileUnit.Automatic
+            } else {
+                return FileUnit.GB
+            }
+        }
+    }
+}
 
 
 extension NSApplication {
