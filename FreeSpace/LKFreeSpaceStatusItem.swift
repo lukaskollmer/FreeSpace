@@ -52,11 +52,11 @@ class LKFreeSpaceStatusItem: NSObject {
         self.infoItem.target = self
         self.statusItemMenu.insertItem(self.infoItem, atIndex: 0)
         
-        self.settingsItem = NSMenuItem(title: "Settings", action: Selector("didClickSettingsButton"), keyEquivalent: "")
+        self.settingsItem = NSMenuItem(title: "Settings", action: Selector("didClickSettingsButton"), keyEquivalent: ",")
         self.settingsItem.target = self
         self.statusItemMenu.insertItem(self.settingsItem, atIndex: 1)
         
-        self.quitItem = NSMenuItem(title: "Quit", action: Selector("didClickQuitButton"), keyEquivalent: "")
+        self.quitItem = NSMenuItem(title: "Quit", action: Selector("didClickQuitButton"), keyEquivalent: "q")
         self.quitItem.target = self
         self.statusItemMenu.insertItem(self.quitItem, atIndex: 2)
         
