@@ -24,12 +24,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.freeSpaceStatusItem = LKFreeSpaceStatusItem()
         self.freeSpaceStatusItem.infoButtonClicked = {(infoButton: NSMenuItem?) in
-            println("info buttonclicked in closure. InfoButton: \(infoButton)")
+            print("info buttonclicked in closure. InfoButton: \(infoButton)")
+            NSApp.orderFrontStandardAboutPanel(self)
             
         }
         
         self.freeSpaceStatusItem.settingsButtonClicked = {(settingsButton: NSMenuItem?) in
-            println("settings buttonclicked in closure. settingsButton: \(settingsButton)")
+            print("settings buttonclicked in closure. settingsButton: \(settingsButton)")
             
             /*
             self.window = NSWindowController(windowNibName: "LKMainWindow")
@@ -40,14 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 */
             self.settingsWindow = LKMainWindow()
             self.settingsWindow?.fileUnitChangeHandler = {(unit: FileUnit) in
-                println("in appdelegate filesize closure")
+                print("in appdelegate filesize closure")
                 self.freeSpaceStatusItem.setFileSizeUnit(unit)
             }
             NSApp.activateIgnoringOtherApps(true)
         }
         
         self.freeSpaceStatusItem.quitButtonClicked = {(quitButton: NSMenuItem?) in
-            println("quit buttonclicked in closure. quitButton: \(quitButton)")
+            print("quit buttonclicked in closure. quitButton: \(quitButton)")
             NSApplication.sharedApplication().terminate(self)
         }
         
@@ -56,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
-        println("applicationWillTerminate")
+        print("applicationWillTerminate")
     }
 
 

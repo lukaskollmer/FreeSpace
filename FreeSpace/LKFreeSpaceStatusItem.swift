@@ -24,7 +24,7 @@ class LKFreeSpaceStatusItem: NSObject {
     private var timer: NSTimer?
     private let metadataQuery = NSMetadataQuery()
     
-    private let freeSpaceManager = LKFreeSpaceManager()
+    private let freeSpaceManager = LKFreeSpaceManager(notificationLevels: nil)
     
     var infoButtonClicked: ((infoButton: NSMenuItem?) -> Void)?
     var settingsButtonClicked: ((settingsButton: NSMenuItem?) -> Void)?
@@ -81,14 +81,14 @@ class LKFreeSpaceStatusItem: NSObject {
     }
     
     func setFileSizeUnit(newUnit: FileUnit) {
-        println("in lkfreespaceitem setfilesize funcstion")
+        print("in lkfreespaceitem setfilesize funcstion")
         self.freeSpaceManager.setUnit(newUnit, completionHandler: {() in
             self.updateStatusItemTitle()
         })
     }
     
     func queryFoundStuff(sender: AnyObject) {
-        println("queryFoundStuff:")
+        print("queryFoundStuff:")
         self.updateStatusItemTitle()
     }
     

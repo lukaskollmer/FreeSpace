@@ -54,15 +54,16 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     
     
-    override init() {
+    init() {
         super.init(window: nil)
         
         /* Load window from xib file */
-        println("****")
+        print("****")
         NSBundle.mainBundle().loadNibNamed("LKMainWindow", owner: self, topLevelObjects: nil)
         self.window?.makeKeyAndOrderFront(self)
         self.showWindow(self.window)
         self.window?.delegate = self
+        self.window?.title = "FreeSpace"
         NSApp.activateIgnoringOtherApps(true)
         //super.init(window: self.window)
         self.loadWindow()
@@ -92,12 +93,12 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-        println("windowDidLoad")
+        print("windowDidLoad")
     }
     
     
     @IBAction func settingsChanged(sender: AnyObject) {
-        println("settins changed")
+        print("settins changed")
         
         switch sender {
         case self.launchAtLoginButton as NSButton:
@@ -142,7 +143,7 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     
     func setAllNotificationButtonsEnabledState(state: Bool) {
-        println("setAllNotificationButtonsEnabledState: \(state)")
+        print("setAllNotificationButtonsEnabledState: \(state)")
         let notificationButtons: [NSButton] = [self.notifyAt2GbButton, self.notifyAt5GbButton, self.notifyAt10GbButton, self.notifyAt15GbButton, self.notifyAt25GbButton, self.notifyAt50GbButton]
         
         for button in notificationButtons {

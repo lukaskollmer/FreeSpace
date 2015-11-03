@@ -13,9 +13,12 @@ class LKFreeSpaceManager {
     let fileManager = NSFileManager.defaultManager()
     
     let fileSizeFormatter = NSByteCountFormatter()
+    let notificationLevelFileSizeFormatter = NSByteCountFormatter()
+
+    let notificationLevels: [LKNotificationLevel]? = []
     
     
-    init() {
+    init(notificationLevels: [LKNotificationLevel]?) {
         let fileUnit: FileUnit = FileUnit(int: NSUserDefaults.standardUserDefaults().integerForKey("fileUnit"))
         
         switch fileUnit {
@@ -33,25 +36,36 @@ class LKFreeSpaceManager {
         
         self.fileSizeFormatter.countStyle = .File
         self.fileSizeFormatter.includesUnit = true
+
+        self.notificationLevelFileSizeFormatter.countStyle = .File
+        self.notificationLevelFileSizeFormatter.includesUnit = false
+        self.notificationLevelFileSizeFormatter.includesCount = true
+
+
+        // Init the Notification stuff
+        //self.notificationLevels = notificationLevels
     }
+
     
     func freeSpaceAsString() -> String {
         
         let error = NSErrorPointer()
-        let dictFree: NSDictionary = self.fileManager.attributesOfFileSystemForPath("/", error: error)!
+        let dictFree: NSDictionary = try! self.fileManager.attributesOfFileSystemForPath("/")
         
-        let freeSpace: NSNumber = dictFree[NSFileSystemFreeSize] as NSNumber
+        let freeSpace: NSNumber = dictFree[NSFileSystemFreeSize] as! NSNumber
         
         let bytesAsInt: Int64 = freeSpace.longLongValue
         
         let bytesAsString: String = self.fileSizeFormatter.stringFromByteCount(bytesAsInt)
+
+        // Before returning the function, "save" the count for notification purposes
 
         return bytesAsString
     }
     
 
     func setUnit(unit: FileUnit, completionHandler: (() -> Void)) {
-        println("in freespace manager set unit func")
+        print("in freespace manager set unit func")
         switch unit {
         case .Automatic:
             self.fileSizeFormatter.allowedUnits = .UseAll
@@ -63,4 +77,8 @@ class LKFreeSpaceManager {
         
         completionHandler()
     }
+
+    //private func notificationIsNeeded() -> Bool {
+    //
+    //}
 }
