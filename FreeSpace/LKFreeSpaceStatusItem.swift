@@ -13,6 +13,7 @@ import Cocoa
 class LKFreeSpaceStatusItem: NSObject {
     
     
+    var shouldDisplayNotification = true
     
     private var statusItemMenu = NSMenu()
     private var statusItem: NSStatusItem!
@@ -67,6 +68,11 @@ class LKFreeSpaceStatusItem: NSObject {
         self.startWatching()
         
         
+        NSTimer.every(30*60) { () -> Void in
+            self.shouldDisplayNotification = true
+        }
+        
+        
         
     
     }
@@ -90,10 +96,39 @@ class LKFreeSpaceStatusItem: NSObject {
     func queryFoundStuff(sender: AnyObject) {
         print("queryFoundStuff:")
         self.updateStatusItemTitle()
+        self.checkIfNotificationIsNeccessary()
     }
     
     func updateStatusItemTitle() {
         self.statusItem.title = self.freeSpaceManager.freeSpaceAsString()
+    }
+    
+    
+    func checkIfNotificationIsNeccessary() {
+        var spaceString = self.freeSpaceManager.freeSpaceAsString()
+        spaceString.removeFileSizeTextAndConvertCommasToPoints()
+        
+        var totalSpace = self.freeSpaceManager.totalSpaceAsString()
+        totalSpace.removeFileSizeTextAndConvertCommasToPoints()
+
+        let freeSpaceAsDouble  = Double(spaceString)
+        let totalSpaceAsDouble = Double(totalSpace)
+        print(0.1 * totalSpaceAsDouble!)
+        
+        if freeSpaceAsDouble < (0.1 * totalSpaceAsDouble!) {
+            showNotification()
+        }
+    }
+    
+    func showNotification() {
+        if shouldDisplayNotification {
+            let notification = NSUserNotification()
+            notification.title = "Running low on space"
+            notification.informativeText = "You have less that 10 % free space left"
+            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+        }
+        
+        shouldDisplayNotification = false
     }
     
     func didClickInfoButton() {
@@ -110,4 +145,15 @@ class LKFreeSpaceStatusItem: NSObject {
     }
 
     
+}
+
+
+extension String {
+    mutating func removeFileSizeTextAndConvertCommasToPoints() {
+        self = self.stringByReplacingOccurrencesOfString(" GB", withString: "")
+            .stringByReplacingOccurrencesOfString(" MB", withString: "")
+            .stringByReplacingOccurrencesOfString(" KB", withString: "")
+            .stringByReplacingOccurrencesOfString(",", withString: ".")
+        
+    }
 }

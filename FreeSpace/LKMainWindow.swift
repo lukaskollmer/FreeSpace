@@ -35,19 +35,6 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
     
     @IBOutlet weak var showNotificationsButton: NSButton!
     
-    @IBOutlet weak var notifyAt2GbButton: NSButton!
-    
-    @IBOutlet weak var notifyAt5GbButton: NSButton!
-    
-    @IBOutlet weak var notifyAt10GbButton: NSButton!
-    
-    @IBOutlet weak var notifyAt15GbButton: NSButton!
-    
-    @IBOutlet weak var notifyAt25GbButton: NSButton!
-    
-    @IBOutlet weak var notifyAt50GbButton: NSButton!
-    
-    
     
     
     var fileUnitChangeHandler: ((unit: FileUnit) -> Void)?
@@ -86,6 +73,9 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         self.fileSizeUnitRadioButton.selectCellAtRow(fileUnit.rawValue, column: 0)
         
         
+        self.showNotificationsButton.state = Int(NSUserDefaults.standardUserDefaults().boolForKey("notificationsEnabled"))
+        
+        
         
     }
     
@@ -108,14 +98,8 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
             self.updateFileSizeSettings()
             break
         case self.showNotificationsButton as NSButton:
-            if self.showNotificationsButton.state == 0 {
-                self.setAllNotificationButtonsEnabledState(false)
-            }
-            if self.showNotificationsButton.state == 1 {
-                self.setAllNotificationButtonsEnabledState(true)
-            }
-            break
-        case self.notifyAt2GbButton as NSButton, self.notifyAt5GbButton as NSButton, self.notifyAt10GbButton as NSButton, self.notifyAt15GbButton as NSButton, self.notifyAt25GbButton as NSButton, self.notifyAt50GbButton as NSButton:
+            let state: Bool = Bool((sender as! NSButton).state)
+            setNotificationsEnabled(state)
             break
         default:
             break
@@ -137,21 +121,15 @@ class LKMainWindow: NSWindowController, NSWindowDelegate {
         let fileUnit = self.fileSizeUnitRadioButton.selectedFileUnit
         
         NSUserDefaults.standardUserDefaults().setInteger(fileUnit.rawValue, forKey: "fileUnit")
+        NSUserDefaults.standardUserDefaults().synchronize()
         
         self.fileUnitChangeHandler?(unit: fileUnit)
     }
     
     
-    func setAllNotificationButtonsEnabledState(state: Bool) {
-        print("setAllNotificationButtonsEnabledState: \(state)")
-        let notificationButtons: [NSButton] = [self.notifyAt2GbButton, self.notifyAt5GbButton, self.notifyAt10GbButton, self.notifyAt15GbButton, self.notifyAt25GbButton, self.notifyAt50GbButton]
-        
-        for button in notificationButtons {
-            button.enabled = state
-        }
-    }
-    func updateNotificationSettings() {
-        
+    func setNotificationsEnabled(enabled: Bool) {
+        NSUserDefaults.standardUserDefaults().setBool(enabled, forKey: "notificationsEnabled")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     

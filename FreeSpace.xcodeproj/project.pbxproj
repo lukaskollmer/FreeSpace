@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D7CD0401BE8FCEE0035F158 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CD03F1BE8FCEE0035F158 /* SwiftyTimer.swift */; };
 		5D8BD1E31A21C6C8002892B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E21A21C6C8002892B2 /* AppDelegate.swift */; };
 		5D8BD1E51A21C6C8002892B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D8BD1E41A21C6C8002892B2 /* Images.xcassets */; };
 		5D8BD1F41A21C6C8002892B2 /* FreeSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8BD1F31A21C6C8002892B2 /* FreeSpaceTests.swift */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D7CD03F1BE8FCEE0035F158 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
+		5D7CD0411BE917AF0035F158 /* FreeSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FreeSpace.entitlements; sourceTree = "<group>"; };
 		5D8BD1DD1A21C6C8002892B2 /* FreeSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D8BD1E11A21C6C8002892B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D8BD1E21A21C6C8002892B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,12 +88,14 @@
 		5D8BD1DF1A21C6C8002892B2 /* FreeSpace */ = {
 			isa = PBXGroup;
 			children = (
+				5D7CD0411BE917AF0035F158 /* FreeSpace.entitlements */,
 				5D8BD1FD1A21C6E6002892B2 /* LKFreeSpaceManager.swift */,
 				5D8BD1E21A21C6C8002892B2 /* AppDelegate.swift */,
 				5DA304901A21F8BB0053F405 /* FreeSpacePlayground.playground */,
 				5D8BD2021A21D40B002892B2 /* LKFreeSpaceStatusItem.swift */,
 				5D8BD1E41A21C6C8002892B2 /* Images.xcassets */,
 				5D8BD1E61A21C6C8002892B2 /* MainMenu.xib */,
+				5D7CD03F1BE8FCEE0035F158 /* SwiftyTimer.swift */,
 				5DE6917D1A22136300E29D66 /* LKMainWindow.swift */,
 				5DC676011A3488F10032EEE7 /* Extensions.swift */,
 				5DE6917E1A22136300E29D66 /* LKMainWindow.xib */,
@@ -176,6 +181,11 @@
 					5D8BD1DC1A21C6C8002892B2 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = WL6ZJ4C8V3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					5D8BD1EC1A21C6C8002892B2 = {
 						CreatedOnToolsVersion = 6.1;
@@ -231,6 +241,7 @@
 				5DC676021A3488F10032EEE7 /* Extensions.swift in Sources */,
 				5D8BD1E31A21C6C8002892B2 /* AppDelegate.swift in Sources */,
 				5D8BD2031A21D40B002892B2 /* LKFreeSpaceStatusItem.swift in Sources */,
+				5D7CD0401BE8FCEE0035F158 /* SwiftyTimer.swift in Sources */,
 				5D8BD1FE1A21C6E6002892B2 /* LKFreeSpaceManager.swift in Sources */,
 				5DE6917F1A22136300E29D66 /* LKMainWindow.swift in Sources */,
 			);
@@ -348,11 +359,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = FreeSpace/FreeSpace.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FreeSpace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "WL6ZJ4C8V3.LukasKollmer.$(PRODUCT_NAME:rfc1034identifier)";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kollmer.FreeSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -361,11 +374,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = FreeSpace/FreeSpace.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FreeSpace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "WL6ZJ4C8V3.LukasKollmer.$(PRODUCT_NAME:rfc1034identifier)";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kollmer.FreeSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

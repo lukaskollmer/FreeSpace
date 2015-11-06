@@ -45,14 +45,18 @@ class LKFreeSpaceManager {
         // Init the Notification stuff
         //self.notificationLevels = notificationLevels
     }
+    
+    func queryInfoFromFileSystemAttributes(query: String) -> AnyObject {
+        let error = NSErrorPointer()
+        let dict: NSDictionary = try! self.fileManager.attributesOfFileSystemForPath("/")
+        
+        return dict[query]!
+    }
 
     
     func freeSpaceAsString() -> String {
         
-        let error = NSErrorPointer()
-        let dictFree: NSDictionary = try! self.fileManager.attributesOfFileSystemForPath("/")
-        
-        let freeSpace: NSNumber = dictFree[NSFileSystemFreeSize] as! NSNumber
+        let freeSpace = queryInfoFromFileSystemAttributes(NSFileSystemFreeSize) as! NSNumber
         
         let bytesAsInt: Int64 = freeSpace.longLongValue
         
@@ -61,6 +65,18 @@ class LKFreeSpaceManager {
         // Before returning the function, "save" the count for notification purposes
 
         return bytesAsString
+    }
+    
+    
+    func totalSpaceAsString() -> String {
+        let totalSpace = queryInfoFromFileSystemAttributes(NSFileSystemSize) as! NSNumber
+        
+        let bytesAsInt: Int64 = totalSpace.longLongValue
+        
+        let totalAsString: String = self.fileSizeFormatter.stringFromByteCount(bytesAsInt)
+        
+        
+        return totalAsString
     }
     
 
